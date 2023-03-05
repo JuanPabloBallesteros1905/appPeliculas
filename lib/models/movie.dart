@@ -37,11 +37,20 @@ class Movie {
   //* El getter está dentro de la clase Movie, ya que con esta estamos trabajando
   get fullPosterImg {
     if (this.posterPath != null) {
-      return 'https://image.tmdb.org/t/p/w500${posterPath}';
+      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
     } else {
       'https://i.stack.imgur.com/GNhxO.png';
     }
   }
+
+    get fullbackdroppath {
+    if (this.backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+    } else {
+      'https://i.stack.imgur.com/GNhxO.png';
+    }
+  }
+
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 

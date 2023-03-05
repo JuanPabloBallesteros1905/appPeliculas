@@ -3,44 +3,55 @@ import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
 
 class MoviesProvider extends ChangeNotifier {
-  //mostrar las imagenes de la api en nuestros componentes creados para este proposito
+  //*aqui creo unos parametros para el url
+  final String _apiKey = '7cd9520a02bbf9dedfef489a4e616be3';
+  final String _baseUrl = 'api.themoviedb.org';
+  final String _lenguage = 'es-ES';
 
-  //1. creamos una lista de tipo Movie (Esta clase se encuentra en nuestro mapeado )
+  //*Aqui creamos una lista vacia la cual se llenara con los datos provenientes del
   List<Movie> onDisplayMovies = [];
-  //*Lista vacia para las pelicualas populares
+
   List<Movie> onPopularMovies = [];
+
+  //*propiedad de aunmento de las paginas
+
+  int pages = 0;
 
   MoviesProvider() {
     print('movies provider inicializado');
 
     getOnDisplayMovies();
-    getPopularMovies();
+    getOnPopularmovies();
   }
 
+  //* metodo creado para optimizar el codigo
+
+  Future<String> _getJsonData(String endPoint, [int page = 1]) async {
+    var url = Uri.https(_baseUrl, endPoint,
+        {'api_key': _apiKey, 'language': _lenguage, 'page': '$page'});
+
+    var response = await http.get(url);
+    return response.body;
+  }
+
+  //* Metodo que se ejecuta al iniciar la app gracias al provider
   getOnDisplayMovies() async {
-    //*url de la api
-    final url = Uri.parse(
-        'https://api.themoviedb.org/3/movie/now_playing?api_key=7cd9520a02bbf9dedfef489a4e616be3&language=es-ES&page=1');
+    final jsonData = await _getJsonData('3/movie/now_playing');
 
-    //*aqui se hace la peticion http
-    final res = await http.get(url);
-    //* esta es una variable creada gracias al mapeo que se hizo con ayuda del quicktype en donde se remplaza el jsoncode()
-    final nowPlayingResponse = NowPlayingResponse.fromJson(res.body);
+    final nowPlayingResponse = NowPlayingResponse.fromJson(jsonData);
 
-    //*aqui se llena con los datos de la api
+    //*aqui llenamos esa lista vacia con los datos provenientes de la api
     onDisplayMovies = nowPlayingResponse.results;
     notifyListeners();
   }
 
-  getPopularMovies() async {
-    final url = Uri.parse(
-        'https://api.themoviedb.org/3/movie/popular?api_key=7cd9520a02bbf9dedfef489a4e616be3&language=es-ES&page=1');
-    final res = await http.get(url);
-    final popularMovies = PopularResponse.fromJson(res.body);
-    onPopularMovies = popularMovies.results;
+  getOnPopularmovies() async {
+    pages++;
 
-    
+    final jsonData = await _getJsonData('3/movie/popular', pages);
 
+    final popular = PopularResponse.fromJson(jsonData);
+    onPopularMovies = popular.results;
 
     notifyListeners();
   }

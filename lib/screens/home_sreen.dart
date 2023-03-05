@@ -27,10 +27,20 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               //*aqui le mandamos los parametros al widget
 
-              CardsSwiper(movies: moviesProvider.onDisplayMovies),
+              CardsSwiper(
+                  //* aqui le pasamos a la variable movie las peliculas que viene de la lista que creamos en el provider
+                  //*  podemos usar el moviesProvider gracia a que se creó el provider allá arriba
+                  movies: moviesProvider.onDisplayMovies),
               MovieSlider(
-                  populares: moviesProvider.onPopularMovies,
-                  titulo: "Populares!"),
+                populares: moviesProvider.onPopularMovies,
+                titulo: "Populares!",
+                
+                
+                
+                nextPage: () {
+                  moviesProvider.getOnPopularmovies();
+                },
+              ),
             ],
           ),
         ));

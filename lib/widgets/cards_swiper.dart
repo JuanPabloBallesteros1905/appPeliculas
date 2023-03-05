@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:peliculas/models/movie.dart';
 
 class CardsSwiper extends StatelessWidget {
-  //*creamos esta propiedad para mandar como argumentos al widget
+  //* Aqui creo una variable de tipo lista, la cual contiene los objetos de la clase Movie
   final List<Movie> movies;
 
   const CardsSwiper({
@@ -30,7 +30,7 @@ class CardsSwiper extends StatelessWidget {
 
           return GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'details',
-                arguments: 'movi-details'),
+                arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(

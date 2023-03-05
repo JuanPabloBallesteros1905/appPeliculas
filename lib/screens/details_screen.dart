@@ -1,15 +1,16 @@
-// ignore_for_file: prefer_const_constructors
+import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
+import 'package:peliculas/provider/movies_provider.dart';
 import 'package:peliculas/widgets/widgets.dart';
-
-import '../models/models.dart';
+import 'package:provider/provider.dart';
 
 class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'No movie';
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    print(movie.title);
 
     return Scaffold(
         body: CustomScrollView(
@@ -18,6 +19,8 @@ class Details extends StatelessWidget {
         SliverList(
             delegate: SliverChildListDelegate([
           _PosterDetails(),
+          OverView(),
+          OverView(),
           OverView(),
           OverView(),
           OverView(),
@@ -45,8 +48,8 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black45,
           alignment: Alignment.bottomCenter,
           width: double.infinity,
-          child: Text('movie.title'),
-          padding: EdgeInsets.only(bottom: 10),
+          child: const Text(''),
+          padding: const EdgeInsets.only(bottom: 10),
         ),
         background: const FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
@@ -70,13 +73,13 @@ class _PosterDetails extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
+              child: const FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'),
                 image: NetworkImage('https://via.placeholder.com/200x300'),
                 height: 200,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Column(
@@ -95,12 +98,12 @@ class _PosterDetails extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star_border_outlined,
                       color: Colors.grey,
                       size: 15,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text('movie.voteAverage', style: textTheme.caption)
@@ -117,8 +120,8 @@ class OverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Text(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: const Text(
         'Do sit esse sunt ipsum elit mollit aute culpa. Aliquip esse in occaecat enim sit id deserunt ut. Sint eiusmod ipsum laboris enim pariatur consectetur est proident non anim in ut aliquip. Do consequat in excepteur dolore occaecat consequat dolor enim duis ex ea tempor.',
         textAlign: TextAlign.justify,
       ),
