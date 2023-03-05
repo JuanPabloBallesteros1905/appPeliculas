@@ -52,6 +52,7 @@ class _MovieSliderState extends State<MovieSlider> {
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);
 
+
     return Container(
       width: double.infinity,
       height: 250,
