@@ -6,7 +6,6 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    print(movie.title);
 
     return Scaffold(
         body: CustomScrollView(
@@ -20,7 +19,7 @@ class Details extends StatelessWidget {
           OverView(
             movie: movie,
           ),
-          CastingCards()
+          CastingCards( movieId: movie.id,)
         ]))
       ],
     ));
@@ -45,8 +44,11 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black45,
           alignment: Alignment.bottomCenter,
           width: double.infinity,
-          child: Text(movie.title),
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+          child: Text(
+            movie.title,
+            textAlign: TextAlign.center,
+          ),
         ),
         background: FadeInImage(
           placeholder: const AssetImage('assets/loading.gif'),
@@ -67,6 +69,8 @@ class _PosterDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
+    final size = MediaQuery.of(context).size;
+
     return Container(
         margin: const EdgeInsets.only(top: 10),
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -77,77 +81,81 @@ class _PosterDetails extends StatelessWidget {
               child: FadeInImage(
                 placeholder: const AssetImage('assets/no-image.jpg'),
                 image: NetworkImage(movie.fullPosterImg),
-                height: 200,
+                height: 150,
+                width: 110,
               ),
             ),
             const SizedBox(
               width: 20,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movie.title,
-                  style: textTheme.headline5,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  maxLines: 2,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  movie.originalTitle,
-                  style: textTheme.subtitle1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_border_outlined,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(movie.voteAverage.toString(),
-                        style: textTheme.caption),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      '/ 10',
-                      style: textTheme.caption,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_border_outlined,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      movie.voteCount.toString(),
-                      style: textTheme.caption,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      'votos',
-                      style: textTheme.caption,
-                    )
-                  ],
-                ),
-              ],
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: size.width - 190),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movie.title,
+                    style: textTheme.headline5,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    movie.originalTitle,
+                    style: textTheme.subtitle1,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star_border_outlined,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(movie.voteAverage.toString(),
+                          style: textTheme.caption),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Text(
+                        '/ 10',
+                        style: textTheme.caption,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star_border_outlined,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        movie.voteCount.toString(),
+                        style: textTheme.caption,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'votos',
+                        style: textTheme.caption,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             )
           ],
         ));
