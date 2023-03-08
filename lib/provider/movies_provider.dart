@@ -13,6 +13,10 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onPopularMovies = [];
 
+  //*actores
+
+  Map<int, List<Cast>> movieCast = {};
+
   //*propiedad de aunmento de las paginas
 
   int pages = 0;
@@ -54,5 +58,14 @@ class MoviesProvider extends ChangeNotifier {
     onPopularMovies = popular.results;
 
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMovieCast(int movieId) async {
+    print('pidiendo info Cast');
+    final jsonData = await _getJsonData('3/movie/$movieId/credits');
+    final creditsResponse = CredistResponse.fromJson(jsonData);
+
+    movieCast[movieId] = creditsResponse.cast;
+    return creditsResponse.cast;
   }
 }

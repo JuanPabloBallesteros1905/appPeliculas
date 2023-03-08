@@ -59,10 +59,10 @@ class Cast {
   String? job;
 
   get fullProfilePath {
-    if (this.fullProfilePath != null) {
+    if (this.profilePath != null) {
       return 'https://image.tmdb.org/t/p/w500${this.profilePath}';
     } else {
-      'https://i.stack.imgur.com/GNhxO.png';
+      return 'https://upload.wikimedia.org/wikipedia/commons/2/2f/No-photo-m.png';
     }
   }
 

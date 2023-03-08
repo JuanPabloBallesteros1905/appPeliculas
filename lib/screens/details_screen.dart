@@ -19,7 +19,9 @@ class Details extends StatelessWidget {
           OverView(
             movie: movie,
           ),
-          CastingCards( movieId: movie.id,)
+          CastingCards(
+            movieId: movie.id,
+          )
         ]))
       ],
     ));
@@ -170,7 +172,7 @@ class OverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 22),
       child: Text(
         movie.overview,
         textAlign: TextAlign.justify,
