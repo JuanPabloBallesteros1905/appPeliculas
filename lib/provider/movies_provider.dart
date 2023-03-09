@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
+import 'package:peliculas/models/treanding_response.dart';
 
 class MoviesProvider extends ChangeNotifier {
   //*aqui creo unos parametros para el url
@@ -12,6 +13,8 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> onDisplayMovies = [];
 
   List<Movie> onPopularMovies = [];
+
+  List<Treanding> onTreadingMovies = [];
 
   //*actores
 
@@ -26,6 +29,7 @@ class MoviesProvider extends ChangeNotifier {
 
     getOnDisplayMovies();
     getOnPopularmovies();
+    getTreadingMovies();
   }
 
   //* metodo creado para optimizar el codigo
@@ -67,5 +71,14 @@ class MoviesProvider extends ChangeNotifier {
 
     movieCast[movieId] = creditsResponse.cast;
     return creditsResponse.cast;
+  }
+
+  getTreadingMovies() async {
+    final jsonData = await _getJsonData('3/trending/movie/week');
+    final treading = TreandingRespomse.fromJson(jsonData);
+
+    onTreadingMovies = treading.results;
+
+    notifyListeners();
   }
 }

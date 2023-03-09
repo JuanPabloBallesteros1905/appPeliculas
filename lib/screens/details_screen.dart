@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
+import 'package:peliculas/models/treanding_response.dart';
 import 'package:peliculas/widgets/widgets.dart';
 
 class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+ 
 
     return Scaffold(
         body: CustomScrollView(
@@ -99,7 +101,7 @@ class _PosterDetails extends StatelessWidget {
                     movie.title,
                     style: textTheme.headline5,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                    maxLines: 4,
                   ),
                   const SizedBox(
                     height: 5,

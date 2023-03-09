@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:peliculas/provider/movies_provider.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +22,6 @@ class MovieSlider extends StatefulWidget {
 
 class _MovieSliderState extends State<MovieSlider> {
   ScrollController scrollController = ScrollController();
-  bool isLoading = false;
 
   @override
   void initState() {
@@ -52,7 +50,6 @@ class _MovieSliderState extends State<MovieSlider> {
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);
 
-
     return Container(
       width: double.infinity,
       height: 250,
@@ -63,10 +60,10 @@ class _MovieSliderState extends State<MovieSlider> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               widget.titulo!,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontFamily: 'poppins'),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
                 controller: scrollController,

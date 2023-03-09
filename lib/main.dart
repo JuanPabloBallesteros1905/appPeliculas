@@ -32,15 +32,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Peliculas',
-        //indica la ruta inicial
-        initialRoute: 'home',
-        //se crean las rutas de la app las cuales van en un mapa
-        routes: {'home': (_) => HomeScreen(), 'details': (_) => Details()},
-        //este es el tema de nuestra app
-        theme: ThemeData.light().copyWith(
-            appBarTheme:
-                const AppBarTheme(color: Color.fromARGB(255, 164, 42, 34))));
+      debugShowCheckedModeBanner: false,
+      title: 'Peliculas',
+      //indica la ruta inicial
+      initialRoute: 'home',
+      //se crean las rutas de la app las cuales van en un mapa
+      routes: {'home': (_) => HomeScreen(), 'details': (_) => Details()},
+      //este es el tema de nuestra app
+      theme: ThemeData.dark().copyWith(
+          appBarTheme: const AppBarTheme(color: Color.fromRGBO(110, 4, 4, 70))),
+    );
   }
 }
