@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:peliculas/provider/movies_provider.dart';
+import 'package:peliculas/search/search_delegate.dart';
 import 'package:peliculas/widgets/treanding_screen.dart';
 import 'package:peliculas/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -19,12 +20,18 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.search_outlined))
+                icon: const Icon(Icons.search_outlined),
+                onPressed: () => showSearch(
+                    context: context,
+                    delegate:
+                        MovieSearchDelegate() //*Esta es la clase que creamos en la carpeta search  )
+
+                    ))
           ],
           shadowColor: Colors.black,
           elevation: 15,
           centerTitle: true,
-          title: const Text('  '),
+          title: const Text(' OnMoviesYet '),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),

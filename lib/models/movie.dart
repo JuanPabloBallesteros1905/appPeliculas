@@ -33,6 +33,8 @@ class Movie {
   double voteAverage;
   int voteCount;
 
+  String? heroId;
+
   //* Creamos un getter para poder obtener el link completo de nustras imagenes
   //* El getter está dentro de la clase Movie, ya que con esta estamos trabajando
   get fullPosterImg {
@@ -43,14 +45,13 @@ class Movie {
     }
   }
 
-    get fullbackdroppath {
+  get fullbackdroppath {
     if (this.backdropPath != null) {
       return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
     } else {
       'https://i.stack.imgur.com/GNhxO.png';
     }
   }
-
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
