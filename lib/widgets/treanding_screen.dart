@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
 import 'package:peliculas/models/treanding_response.dart';
 
 class TreandingScreen extends StatelessWidget {
-  final List<Treanding> treanfin;
+  final List<Movie> treanfin;
 
   const TreandingScreen({super.key, required this.treanfin});
 
@@ -39,7 +40,7 @@ class TreandingScreen extends StatelessWidget {
 }
 
 class TreandingPoster extends StatelessWidget {
-  final Treanding treanding;
+  final Movie treanding;
 
   const TreandingPoster({super.key, required this.treanding});
 
@@ -52,7 +53,9 @@ class TreandingPoster extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => null,
+            onTap: () {
+              Navigator.pushNamed(context, 'details', arguments: treanding);
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
@@ -60,7 +63,7 @@ class TreandingPoster extends StatelessWidget {
                   height: 185,
                   width: 130,
                   placeholder: const AssetImage('assets/no-image.jpg'),
-                  image: NetworkImage(treanding.fullposterTreandingImg)),
+                  image: NetworkImage(treanding.fullPosterImg)),
             ),
           ),
           Text(

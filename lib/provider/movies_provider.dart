@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
-import 'package:peliculas/models/treanding_response.dart';
 
 class MoviesProvider extends ChangeNotifier {
   //*aqui creo unos parametros para el url
@@ -14,7 +13,7 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onPopularMovies = [];
 
-  List<Treanding> onTreadingMovies = [];
+  List<Movie> onTreadingMovies = [];
 
   //*actores
 

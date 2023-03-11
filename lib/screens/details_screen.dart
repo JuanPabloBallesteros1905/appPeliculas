@@ -118,7 +118,7 @@ class _PosterDetails extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.star_border_outlined,
-                        color: Colors.grey,
+                        color: Colors.amber,
                         size: 15,
                       ),
                       const SizedBox(
@@ -142,7 +142,7 @@ class _PosterDetails extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.star_border_outlined,
-                        color: Colors.grey,
+                        color: Colors.amber,
                         size: 15,
                       ),
                       const SizedBox(width: 4),
@@ -156,12 +156,31 @@ class _PosterDetails extends StatelessWidget {
                       Text(
                         'votos',
                         style: textTheme.caption,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.calendar_month_outlined,
+                        size: 15,
+                        color: Colors.green,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        movie.releaseDate.toString(),
+                        style: textTheme.caption,
                       )
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ));
   }
