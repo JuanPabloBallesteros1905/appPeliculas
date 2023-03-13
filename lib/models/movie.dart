@@ -41,7 +41,7 @@ class Movie {
     if (this.posterPath != null) {
       return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
     } else {
-      'https://i.stack.imgur.com/GNhxO.png';
+      return 'https://www.prokerala.com/movies/assets/img/no-poster-available.jpg';
     }
   }
 
@@ -49,7 +49,7 @@ class Movie {
     if (this.backdropPath != null) {
       return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
     } else {
-      'https://i.stack.imgur.com/GNhxO.png';
+      return 'https://i.stack.imgur.com/GNhxO.png';
     }
   }
 
